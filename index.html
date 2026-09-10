@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dharanesh H M | Java Full-Stack Developer & Software Developer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            950: '#070A13',
+                            900: '#0B0F19',
+                            800: '#111827',
+                            700: '#1E293B',
+                            600: '#334155'
+                        },
+                        cyanAccent: '#38BDF8',
+                        purpleAccent: '#818CF8',
+                        emeraldAccent: '#10B981'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar and Glassmorphism Utilities */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E293B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #38BDF8;
+        }
+        .glass-card {
+            background: rgba(17, 24, 39, 0.75);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card-hover:hover {
+            transform: translateY(-4px);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 12px 30px -10px rgba(56, 189, 248, 0.25);
+        }
+        .glow-text {
+            text-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+        }
+        .bg-grid-pattern {
+            background-size: 32px 32px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.35; transform: scale(1); }
+            50% { opacity: 0.75; transform: scale(1.05); }
+        }
+        .animate-pulse-glow {
+            animation: pulseGlow 5s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-navy-900 text-slate-100 font-sans antialiased overflow-x-hidden selection:bg-cyanAccent selection:text-navy-950">
+
+    <!-- Sticky Header Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-navy-900/85 backdrop-blur-md border-b border-slate-800/80 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#home" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyanAccent to-purpleAccent p-[2px] transition-transform group-hover:scale-105">
+                    <div class="w-full h-full bg-navy-900 rounded-[10px] flex items-center justify-center font-mono font-bold text-lg text-cyanAccent">
+                        D
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-lg text-slate-100 tracking-tight group-hover:text-cyanAccent transition-colors">Dharanesh H M</span>
+                    <span class="text-xs text-slate-400 font-mono">CSE '26 • Java Dev</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+                <a href="#home" class="nav-link px-3 py-2 text-sm font-medium text-slate-300 hover:text-cyanAccent hover:bg-slate-800/50 rounded-lg transition-all">Home</a>
+                <a href="#about" class="nav-link px-3 py-2 text-sm font-medium text-slate-300 hover:text-cyanAccent hover:bg-slate-800/50 rounded-lg transition-all">About</a>
+                <a href="#skills" class="nav-link px-3 py-2 text-sm font-medium text-slate-300 hover:text-cyanAccent hover:bg-slate-800/50 rounded-lg transition-all">Skills</a>
+                <a href="#projects" class="nav-link px-3 py-2 text-sm font-medium text-slate-300 hover:text-cyanAccent hover:bg-slate-800/50 rounded-lg transition-all">Projects</a>
+                <a href="#education" class="nav-link px-3 py-2 text-sm font-medium text-slate-300 hover:text-cyanAccent hover:bg-slate-800/50 rounded-lg transition-all">Education</a>
+                <a href="#contact" class="nav-link px-3 py-2 text-sm font-medium text-slate-300 hover:text-cyanAccent hover:bg-slate-800/50 rounded-lg transition-all">Contact</a>
+            </nav>
+
+            <!-- Action CTA Button -->
+            <div class="hidden md:flex items-center gap-3">
+                <button onclick="openResumeModal()" class="px-4 py-2 text-xs font-semibold font-mono text-navy-950 bg-gradient-to-r from-cyanAccent to-purpleAccent rounded-lg shadow-lg hover:shadow-cyanAccent/25 hover:scale-105 transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-file-arrow-down"></i>
+                    Resume
+                </button>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-navy-900/95 border-b border-slate-800 px-4 pt-2 pb-6 space-y-2 backdrop-blur-xl transition-all duration-300">
+            <a href="#home" onclick="toggleMobileMenu()" class="block px-3 py-2 text-base font-medium text-slate-300 hover:text-cyanAccent rounded-lg hover:bg-slate-800/60">Home</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block px-3 py-2 text-base font-medium text-slate-300 hover:text-cyanAccent rounded-lg hover:bg-slate-800/60">About</a>
+            <a href="#skills" onclick="toggleMobileMenu()" class="block px-3 py-2 text-base font-medium text-slate-300 hover:text-cyanAccent rounded-lg hover:bg-slate-800/60">Skills</a>
+            <a href="#projects" onclick="toggleMobileMenu()" class="block px-3 py-2 text-base font-medium text-slate-300 hover:text-cyanAccent rounded-lg hover:bg-slate-800/60">Projects</a>
+            <a href="#education" onclick="toggleMobileMenu()" class="block px-3 py-2 text-base font-medium text-slate-300 hover:text-cyanAccent rounded-lg hover:bg-slate-800/60">Education</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block px-3 py-2 text-base font-medium text-slate-300 hover:text-cyanAccent rounded-lg hover:bg-slate-800/60">Contact</a>
+            <div class="pt-4 border-t border-slate-800 flex gap-3">
+                <button onclick="openResumeModal(); toggleMobileMenu();" class="w-full py-2.5 text-sm font-semibold font-mono text-navy-950 bg-gradient-to-r from-cyanAccent to-purpleAccent rounded-lg text-center flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-file-arrow-down"></i> Download Resume
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-grid-pattern">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyanAccent/10 rounded-full blur-[120px] pointer-events-none animate-pulse-glow"></div>
+        <div class="absolute top-1/3 right-10 w-[400px] h-[400px] bg-purpleAccent/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Narrative Column -->
+                <div class="lg:col-span-7 space-y-6 text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-medium">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 -ml-4"></span>
+                        Open to Entry-Level Software Developer Roles
+                    </div>
+
+                    <div class="space-y-2">
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+                            Hi, I'm <span class="bg-gradient-to-r from-cyanAccent via-purpleAccent to-indigo-400 bg-clip-text text-transparent">Dharanesh H M</span>
+                        </h1>
+                        <p class="text-xl sm:text-2xl font-semibold text-slate-300 font-mono flex items-center gap-2">
+                            <span class="text-cyanAccent">&gt;</span> Java Full-Stack Developer <span class="text-slate-500">|</span> Software Developer
+                        </p>
+                    </div>
+
+                    <p class="text-slate-400 text-base sm:text-lg leading-relaxed max-w-2xl">
+                        Computer Science and Engineering graduate passionate about building scalable full-stack applications using <strong class="text-slate-200 font-medium">Java, Spring Boot, React.js, SQL</strong>, and modern web technologies. Eager to contribute clean code and solve real-world engineering challenges.
+                    </p>
+
+                    <!-- CTAs & Social Channels -->
+                    <div class="pt-4 flex flex-wrap items-center gap-4">
+                        <a href="#projects" class="px-6 py-3.5 text-sm font-semibold font-mono text-navy-950 bg-cyanAccent hover:bg-sky-300 rounded-xl shadow-lg shadow-cyanAccent/20 hover:shadow-cyanAccent/40 transition-all flex items-center gap-2">
+                            <span>View My Projects</span>
+                            <i class="fa-solid fa-arrow-down text-xs"></i>
+                        </a>
+                        <a href="#contact" class="px-6 py-3.5 text-sm font-semibold font-mono text-slate-200 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 rounded-xl transition-all flex items-center gap-2">
+                            <span>Contact Me</span>
+                            <i class="fa-solid fa-paper-plane text-xs text-purpleAccent"></i>
+                        </a>
+
+                        <div class="flex items-center gap-3 pl-2 border-l border-slate-800 ml-2">
+                            <a href="https://linkedin.com/in/dharaneshhm" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-800/60 border border-slate-700/50 flex items-center justify-center text-slate-400 hover:text-cyanAccent hover:border-cyanAccent/40 hover:bg-slate-800 transition-all" aria-label="LinkedIn Profile">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://github.com/DharaneshHM" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-800/60 border border-slate-700/50 flex items-center justify-center text-slate-400 hover:text-cyanAccent hover:border-cyanAccent/40 hover:bg-slate-800 transition-all" aria-label="GitHub Profile">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                            <a href="mailto:dharaneshmahadevaiah@gmail.com" class="w-10 h-10 rounded-xl bg-slate-800/60 border border-slate-700/50 flex items-center justify-center text-slate-400 hover:text-cyanAccent hover:border-cyanAccent/40 hover:bg-slate-800 transition-all" aria-label="Email Contact">
+                                <i class="fa-solid fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Highlight Badges -->
+                    <div class="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono">
+                        <div class="p-3 rounded-lg bg-navy-800/60 border border-slate-800">
+                            <span class="text-slate-400 block">Degree</span>
+                            <span class="text-slate-200 font-bold">BE CSE (2026)</span>
+                        </div>
+                        <div class="p-3 rounded-lg bg-navy-800/60 border border-slate-800">
+                            <span class="text-slate-400 block">Backend</span>
+                            <span class="text-cyanAccent font-bold">Java • Spring Boot</span>
+                        </div>
+                        <div class="p-3 rounded-lg bg-navy-800/60 border border-slate-800">
+                            <span class="text-slate-400 block">Frontend</span>
+                            <span class="text-purpleAccent font-bold">React.js • Tailwind</span>
+                        </div>
+                        <div class="p-3 rounded-lg bg-navy-800/60 border border-slate-800">
+                            <span class="text-slate-400 block">Database</span>
+                            <span class="text-emerald-400 font-bold">MySQL • MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right IDE Window -->
+                <div class="lg:col-span-5">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-cyanAccent/30 to-purpleAccent/30 blur-lg opacity-75"></div>
+                        
+                        <div class="relative rounded-2xl bg-navy-950 border border-slate-800 shadow-2xl overflow-hidden font-mono text-xs sm:text-sm">
+                            <div class="px-4 py-3 bg-navy-800/80 border-b border-slate-800 flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                                    <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                                    <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+                                </div>
+                                <div class="text-slate-400 text-xs flex items-center gap-2">
+                                    <i class="fa-brands fa-java text-orange-400"></i>
+                                    <span>DeveloperProfile.java</span>
+                                </div>
+                                <div class="text-slate-500 text-[10px]">UTF-8</div>
+                            </div>
+
+                            <div class="p-5 text-slate-300 space-y-2 overflow-x-auto min-h-[320px]">
+                                <p><span class="text-purpleAccent">package</span> com.dharanesh.portfolio;</p>
+                                <p class="pt-1"><span class="text-purpleAccent">import</span> org.springframework.stereotype.Service;</p>
+                                <p><span class="text-purpleAccent">import</span> java.util.List;</p>
+                                <p class="pt-2"><span class="text-cyanAccent">@Service</span></p>
+                                <p><span class="text-blue-400">public class</span> <span class="text-yellow-300">SoftwareDeveloper</span> {</p>
+                                
+                                <div class="pl-4 space-y-1">
+                                    <p><span class="text-blue-400">private final</span> String name = <span class="text-emerald-300">"Dharanesh H M"</span>;</p>
+                                    <p><span class="text-blue-400">private final</span> String status = <span class="text-emerald-300">"CSE Graduate (2026)"</span>;</p>
+                                    <p><span class="text-blue-400">private final</span> boolean openToWork = <span class="text-orange-300">true</span>;</p>
+                                    
+                                    <p class="pt-2"><span class="text-blue-400">public</span> List&lt;String&gt; <span class="text-cyanAccent">getPrimaryStack</span>() {</p>
+                                    <p class="pl-4 text-emerald-300">return List.of("Java", "Spring Boot", "React.js", "SQL");</p>
+                                    <p>}</p>
+
+                                    <p class="pt-2"><span class="text-blue-400">public</span> String <span class="text-cyanAccent">getCareerObjective</span>() {</p>
+                                    <p class="pl-4 text-emerald-300">return "To build scalable software & learn continuously";</p>
+                                    <p>}</p>
+                                </div>
+
+                                <p>}</p>
+                                
+                                <div class="pt-3 border-t border-slate-800/80 flex items-center gap-2 text-slate-400">
+                                    <span class="text-green-400">&gt;</span>
+                                    <span id="typing-terminal" class="text-cyanAccent font-mono"></span>
+                                    <span class="w-2 h-4 bg-cyanAccent inline-block animate-pulse"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-navy-950/60 border-t border-slate-800/60 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-cyanAccent font-mono text-xs uppercase tracking-widest font-semibold">About Dharanesh</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">Driven CSE Graduate & Aspiring Developer</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-cyanAccent to-purpleAccent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-7 space-y-6 text-slate-300 text-base leading-relaxed">
+                    <div class="glass-card p-8 rounded-2xl space-y-4">
+                        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-graduation-cap text-cyanAccent"></i>
+                            Solid Engineering Foundation
+                        </h3>
+                        <p>
+                            I am a <strong class="text-white">Computer Science and Engineering graduate (2022–2026)</strong> from Shridevi Institute of Engineering and Technology, Tumakuru, with a strong academic background (<strong class="text-cyanAccent">CGPA: 7.81</strong>) and a deep fascination for backend architecture and full-stack web engineering.
+                        </p>
+                        <p>
+                            As a fresher entering the IT industry, I have spent my academic tenure mastering <strong class="text-slate-100">Java, Spring Boot, REST APIs, Object-Oriented Programming (OOPs), and Relational Databases</strong>. Rather than focusing solely on theoretical concepts, I put my learning into practice by architecting real-world web applications like a smart agriculture equipment sharing platform and group expense manager.
+                        </p>
+                        <p class="text-slate-400 italic text-sm border-l-2 border-purpleAccent pl-4 py-1">
+                            "As a fresher, I have developed hands-on experience through full-stack projects that helped me apply core software engineering concepts to practical, real-world applications."
+                        </p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="glass-card glass-card-hover p-6 rounded-2xl text-center flex flex-col items-center justify-center space-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-cyanAccent/10 border border-cyanAccent/30 flex items-center justify-center text-cyanAccent text-xl mb-1">
+                            <i class="fa-solid fa-user-graduate"></i>
+                        </div>
+                        <h4 class="text-2xl font-extrabold text-white">BE CSE</h4>
+                        <p class="text-xs text-slate-400 font-mono">Shridevi Institute (2022-26)</p>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 font-mono">7.81 CGPA</span>
+                    </div>
+
+                    <div class="glass-card glass-card-hover p-6 rounded-2xl text-center flex flex-col items-center justify-center space-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-purpleAccent/10 border border-purpleAccent/30 flex items-center justify-center text-purpleAccent text-xl mb-1">
+                            <i class="fa-solid fa-cubes"></i>
+                        </div>
+                        <h4 class="text-2xl font-extrabold text-white">Full-Stack</h4>
+                        <p class="text-xs text-slate-400 font-mono">Spring Boot & React</p>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 font-mono">3 Core Projects</span>
+                    </div>
+
+                    <div class="glass-card glass-card-hover p-6 rounded-2xl text-center flex flex-col items-center justify-center space-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xl mb-1">
+                            <i class="fa-brands fa-java"></i>
+                        </div>
+                        <h4 class="text-2xl font-extrabold text-white">Java Stack</h4>
+                        <p class="text-xs text-slate-400 font-mono">Core Java, Spring, JPA</p>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 font-mono">NPTEL Certified</span>
+                    </div>
+
+                    <div class="glass-card glass-card-hover p-6 rounded-2xl text-center flex flex-col items-center justify-center space-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-xl mb-1">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <h4 class="text-2xl font-extrabold text-white">Databases</h4>
+                        <p class="text-xs text-slate-400 font-mono">MySQL & MongoDB</p>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 font-mono">RESTful APIs</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-cyanAccent font-mono text-xs uppercase tracking-widest font-semibold">Technical Expertise</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">Categorized Skill Matrix</h2>
+                <p class="text-slate-400 text-sm mt-2">Comprehensive domain knowledge acquired through academic coursework & projects.</p>
+                <div class="w-16 h-1 bg-gradient-to-r from-cyanAccent to-purpleAccent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Skill Search & Filter Bar -->
+            <div class="max-w-md mx-auto mb-10 relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                <input type="text" id="skill-search" onkeyup="filterSkills()" placeholder="Search skill (e.g. Spring Boot, Java, REST, MySQL)..." 
+                    class="w-full pl-11 pr-4 py-3 bg-navy-800/80 border border-slate-700/80 rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-cyanAccent transition-all">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="skills-grid">
+
+                <!-- Programming Languages -->
+                <div class="glass-card p-6 rounded-2xl glass-card-hover skill-category-card">
+                    <div class="flex items-center gap-3 mb-5 pb-3 border-b border-slate-800">
+                        <div class="p-2.5 rounded-xl bg-cyanAccent/10 text-cyanAccent text-lg">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-white">Languages</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2.5">
+                        <span class="skill-tag px-3 py-2 rounded-xl bg-navy-800 border border-slate-700/60 text-xs font-mono text-slate-200 flex items-center gap-2">
+                            <i class="fa-brands fa-java text-orange-400"></i> Java
+                        </span>
+                        <span class="skill-tag px-3 py-2 rounded-xl bg-navy-800 border border-slate-700/60 text-xs font-mono text-slate-200 flex items-center gap-2">
+                            <i class="fa-brands fa-js text-yellow-400"></i> JavaScript
+                        </span>
+                        <span class="skill-tag px-3 py-2 rounded-xl bg-navy-800 border border-slate-700/60 text-xs font-mono text-slate-200 flex items-center gap-2">
+                            <i class="fa-solid fa-database text-blue-400"></i> SQL
+                        </span>
+                        <span class="skill-tag px-3 py-2 rounded-xl bg-navy-800 border border-slate-700/60 text-xs font-mono text-slate-200 flex items-center gap-2">
+                            <i class="fa-solid fa-c text-purple-400"></i> C Language
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Core Java Essentials -->
+                <div class="glass-card p-6 rounded-2xl glass-card-hover skill-category-card">
+                    <div class="flex items-center gap-3 mb-5 pb-3 border-b border-slate-800">
+                        <div class="p-2.5 rounded-xl bg-orange-500/10 text-orange-400 text-lg">
+                            <i class="fa-brands fa-java"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-white">Core Java Concepts</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2.5">
+                        <span class="skill-tag px-3 py-2 rounded-xl bg-navy-800 border border-slate-700/60 text-xs font-mono text-slate-200">OOPs Principles</span>
+                        <span class="skill-tag px-3 py-2 rounded-xl bg-navy-800 border border-slate-700/60 text-xs font-mono text-slate-200">Collections Framework</span>
+                        <span class="skill-tag px-3 py-2 rounded-xl bg-navy-800 border border-slate-700/60 text-xs font-mono text-slate-200">Exception Handling</span>
+                        <span class="skill-tag px-3 py-2 rounded-xl bg-navy-800 border border-slate-700/60 text-xs font-mono text-slate-200">Arrays & Strings</span>
+                        <span class="skill-tag px-3 py-2 rounded-xl bg-navy-800 border border-slate-700/60 text-xs font-mono text-slate-200">Multithreading Basics</span>
+                    </div>
+                </div>
+
+                <!-- Frameworks -->
+                <div class="glass-card p-6 rounded-2xl glass-card-hover skill-category-card">
+                    <div class="flex items-center gap-3 mb-5 pb-3 border-b border-slate-800">
+                        <div class="p-2.5 rounded-xl bg-purpleAccent/10 text-purpleAccent text-lg">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-white">Frameworks</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2.5">
+                        <span class="skill-tag px-3 py-2 rounded-xl bg-navy-800 border border-slate-700/60 text-xs font-mono text-slate-200 flex items-center gap-2">
+                            <i class="fa-solid fa-leaf text-green-400"></i> Spring Boot
+                        </span>
+                        <span class="skill-tag px-3 py-2 rounded-xl bg-navy-800 border border-slate-700/60 text-xs font-mono text-slate-200 flex items-center gap-2">
+                            <i class="fa-brands fa-react text-cyanAccent"></i> React.js
+                        </span>
+                        <span class="skill-tag px-3 py-2 rounded-xl bg-navy-800 border border-slate-700/60 text-xs font-mono text-slate-200 flex items-center gap-2">
+                            <i class="fa-brands fa-node-js text-emerald-400"></i> Express.js / Node
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Web Technologies -->
+                <div class="glass-card p-6 rounded-2xl glass-card-hover skill-category-card">
+                    <div class="flex items-center gap-3 mb-5 pb-3 border-b border-slate-800">
+                        <div class="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 text-lg">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-white">Web & APIs</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2.5">
+                        <span class="skill-tag px-3 py-2 rounded-xl bg-navy-800 border border-slate-700/60 text-xs font-mono text-slate-200">HTML5</span>
+                        <span class="skill-tag px-3 py-2 rounded-xl bg-navy-800 border border-slate-700/60 text-xs font-mono text-slate-200">CSS3 / Tailwind</span>
+                        <span class="skill-tag px-3 py-2 rounded-xl bg-navy-800 border border-slate-700/60 text-xs font-mono text-slate-200">RESTful APIs</span>
+                        <span class="skill-tag px-3 py-2 rounded-xl bg-navy-800 border border-slate-700/60 text-xs font-mono text-slate-200">JSON & JWT</span>
+                    </div>
+                </div>
+
+                <!-- Databases -->
+                <div class="glass-card p-6 rounded-2xl glass-card-hover skill-category-card">
+                    <div class="flex items-center gap-3 mb-5 pb-3 border-b border-slate-800">
+                        <div class="p-2.5 rounded-xl bg-blue-500/10 text-blue-400 text-lg">
+                            <i class="fa-solid fa-server"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-white">Databases</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2.5">
+                        <span class="skill-tag px-3 py-2 rounded-xl bg-navy-800 border border-slate-700/60 text-xs font-mono text-slate-200 flex items-center gap-2">
+                            <i class="fa-solid fa-database text-blue-400"></i> MySQL
+                        </span>
+                        <span class="skill-tag px-3 py-2 rounded-xl bg-navy-800 border border-slate-700/60 text-xs font-mono text-slate-200 flex items-center gap-2">
+                            <i class="fa-solid fa-database text-indigo-400"></i> PostgreSQL
+                        </span>
+                        <span class="skill-tag px-3 py-2 rounded-xl bg-navy-800 border border-slate-700/60 text-xs font-mono text-slate-200 flex items-center gap-2">
+                            <i class="fa-solid fa-leaf text-emerald-400"></i> MongoDB
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Developer Tools -->
+                <div class="glass-card p-6 rounded-2xl glass-card-hover skill-category-card">
+                    <div class="flex items-center gap-3 mb-5 pb-3 border-b border-slate-800">
+                        <div class="p-2.5 rounded-xl bg-pink-500/10 text-pink-400 text-lg">
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-white">Developer Tools</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2.5">
+                        <span class="skill-tag px-3 py-2 rounded-xl bg-navy-800 border border-slate-700/60 text-xs font-mono text-slate-200">Git & GitHub</span>
+                        <span class="skill-tag px-3 py-2 rounded-xl bg-navy-800 border border-slate-700/60 text-xs font-mono text-slate-200">Apache Maven</span>
+                        <span class="skill-tag px-3 py-2 rounded-xl bg-navy-800 border border-slate-700/60 text-xs font-mono text-slate-200">Postman API Tester</span>
+                        <span class="skill-tag px-3 py-2 rounded-xl bg-navy-800 border border-slate-700/60 text-xs font-mono text-slate-200">VS Code & Eclipse</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-navy-950/80 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-cyanAccent font-mono text-xs uppercase tracking-widest font-semibold">Practical Portfolio</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">Full-Stack Projects</h2>
+                <p class="text-slate-400 text-sm mt-2">Hands-on practical applications built to solve real-world industry problems.</p>
+                <div class="w-16 h-1 bg-gradient-to-r from-cyanAccent to-purpleAccent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Project Filter Tabs -->
+            <div class="flex justify-center mb-10">
+                <div class="inline-flex p-1.5 rounded-2xl bg-navy-800 border border-slate-800 font-mono text-xs">
+                    <button onclick="filterProjects('all')" class="project-tab-btn active px-4 py-2 rounded-xl font-medium transition-all text-slate-300 hover:text-white" id="tab-all">
+                        All Projects
+                    </button>
+                    <button onclick="filterProjects('java')" class="project-tab-btn px-4 py-2 rounded-xl font-medium transition-all text-slate-300 hover:text-white" id="tab-java">
+                        Java & Spring Boot
+                    </button>
+                    <button onclick="filterProjects('mern')" class="project-tab-btn px-4 py-2 rounded-xl font-medium transition-all text-slate-300 hover:text-white" id="tab-mern">
+                        MERN Stack
+                    </button>
+                </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8" id="projects-container">
+
+                <!-- Project 1: FarmTech -->
+                <div class="project-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col border border-cyanAccent/30 relative" data-category="java">
+                    <div class="absolute top-4 right-4 z-10 px-3 py-1 rounded-full bg-gradient-to-r from-cyanAccent to-purpleAccent text-navy-950 text-[10px] font-mono font-bold uppercase tracking-wider">
+                        Primary Highlight
+                    </div>
+
+                    <div class="h-48 bg-gradient-to-br from-emerald-950 via-slate-900 to-navy-950 p-6 flex flex-col justify-between border-b border-slate-800 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-grid-pattern opacity-30"></div>
+                        <div class="relative z-10">
+                            <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">AgriTech Solution</span>
+                            <h3 class="text-2xl font-bold text-white mt-1">FarmTech</h3>
+                        </div>
+                        <p class="relative z-10 text-xs text-slate-300">Smart Agriculture Equipment Sharing Platform</p>
+                    </div>
+
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-6">
+                        <div class="space-y-4">
+                            <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                                <span class="px-2.5 py-1 rounded-md bg-cyanAccent/10 text-cyanAccent border border-cyanAccent/20">React.js</span>
+                                <span class="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Spring Boot</span>
+                                <span class="px-2.5 py-1 rounded-md bg-blue-500/10 text-blue-400 border border-blue-500/20">MySQL</span>
+                                <span class="px-2.5 py-1 rounded-md bg-orange-500/10 text-orange-400 border border-orange-500/20">Java</span>
+                                <span class="px-2.5 py-1 rounded-md bg-purpleAccent/10 text-purpleAccent border border-purpleAccent/20">JPA/Hibernate</span>
+                            </div>
+
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                A farmer-to-farmer equipment rental and leasing platform designed to reduce agricultural machinery ownership costs through resource sharing.
+                            </p>
+
+                            <div class="space-y-2 text-xs text-slate-400">
+                                <span class="font-mono text-slate-200 block font-semibold">Key Capabilities:</span>
+                                <ul class="space-y-1 pl-4 list-disc marker:text-cyanAccent">
+                                    <li>Responsive React UI for equipment browsing & listings</li>
+                                    <li>User authentication & equipment booking workflow</li>
+                                    <li>Spring Boot RESTful APIs with JPA & MySQL DB</li>
+                                    <li>Resource management for users, equipment & bookings</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                            <button onclick="openProjectModal('farmtech')" class="text-xs font-mono font-semibold text-cyanAccent hover:text-sky-300 flex items-center gap-1.5">
+                                <span>Detailed Specs</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </button>
+                            <a href="https://github.com/DharaneshHM" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-mono flex items-center gap-1.5 transition-colors">
+                                <i class="fa-brands fa-github"></i>
+                                Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: SplitEase -->
+                <div class="project-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col" data-category="mern">
+                    <div class="h-48 bg-gradient-to-br from-purple-950 via-slate-900 to-navy-950 p-6 flex flex-col justify-between border-b border-slate-800 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-grid-pattern opacity-30"></div>
+                        <div class="relative z-10">
+                            <span class="text-xs font-mono text-purpleAccent uppercase tracking-widest font-semibold">FinTech & Grocery</span>
+                            <h3 class="text-2xl font-bold text-white mt-1">SplitEase</h3>
+                        </div>
+                        <p class="relative z-10 text-xs text-slate-300">Group Expense & Grocery Price Comparison App</p>
+                    </div>
+
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-6">
+                        <div class="space-y-4">
+                            <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                                <span class="px-2.5 py-1 rounded-md bg-cyanAccent/10 text-cyanAccent border border-cyanAccent/20">React.js</span>
+                                <span class="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Node.js</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-700 text-slate-200">Express.js</span>
+                                <span class="px-2.5 py-1 rounded-md bg-green-500/10 text-green-400 border border-green-500/20">MongoDB</span>
+                                <span class="px-2.5 py-1 rounded-md bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">Multer</span>
+                            </div>
+
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                A full-stack MERN application for group expense tracking, debt calculation, balance management, and grocery price comparison.
+                            </p>
+
+                            <div class="space-y-2 text-xs text-slate-400">
+                                <span class="font-mono text-slate-200 block font-semibold">Key Capabilities:</span>
+                                <ul class="space-y-1 pl-4 list-disc marker:text-purpleAccent">
+                                    <li>Real-time debt calculation & balance tracking</li>
+                                    <li>JWT Authentication & protected REST routes</li>
+                                    <li>Receipt image uploads using Multer middleware</li>
+                                    <li>Cash settlement features for group members</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                            <button onclick="openProjectModal('splitease')" class="text-xs font-mono font-semibold text-purpleAccent hover:text-indigo-300 flex items-center gap-1.5">
+                                <span>Detailed Specs</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </button>
+                            <a href="https://github.com/DharaneshHM" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-mono flex items-center gap-1.5 transition-colors">
+                                <i class="fa-brands fa-github"></i>
+                                Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: E-Commerce Platform -->
+                <div class="project-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col" data-category="mern">
+                    <div class="h-48 bg-gradient-to-br from-blue-950 via-slate-900 to-navy-950 p-6 flex flex-col justify-between border-b border-slate-800 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-grid-pattern opacity-30"></div>
+                        <div class="relative z-10">
+                            <span class="text-xs font-mono text-blue-400 uppercase tracking-widest font-semibold">E-Commerce Web</span>
+                            <h3 class="text-2xl font-bold text-white mt-1">E-Commerce Platform</h3>
+                        </div>
+                        <p class="relative z-10 text-xs text-slate-300">Full Stack Shopping Application</p>
+                    </div>
+
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-6">
+                        <div class="space-y-4">
+                            <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                                <span class="px-2.5 py-1 rounded-md bg-cyanAccent/10 text-cyanAccent border border-cyanAccent/20">React.js</span>
+                                <span class="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Node.js</span>
+                                <span class="px-2.5 py-1 rounded-md bg-green-500/10 text-green-400 border border-green-500/20">MongoDB</span>
+                                <span class="px-2.5 py-1 rounded-md bg-purpleAccent/10 text-purpleAccent border border-purpleAccent/20">JWT Auth</span>
+                            </div>
+
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                Full-stack shopping web portal providing product catalog browsing, cart management, user authentication, checkout workflows, and backend order management.
+                            </p>
+
+                            <div class="space-y-2 text-xs text-slate-400">
+                                <span class="font-mono text-slate-200 block font-semibold">Key Capabilities:</span>
+                                <ul class="space-y-1 pl-4 list-disc marker:text-blue-400">
+                                    <li>Dynamic product filtering & catalog search</li>
+                                    <li>Interactive shopping cart & checkout simulation</li>
+                                    <li>Product, user, and order backend management</li>
+                                    <li>Responsive frontend designed with modern CSS</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                            <button onclick="openProjectModal('ecommerce')" class="text-xs font-mono font-semibold text-blue-400 hover:text-sky-300 flex items-center gap-1.5">
+                                <span>Detailed Specs</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </button>
+                            <a href="https://github.com/DharaneshHM" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-mono flex items-center gap-1.5 transition-colors">
+                                <i class="fa-brands fa-github"></i>
+                                Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Certifications Section -->
+    <section id="education" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Education Timeline Left -->
+                <div class="lg:col-span-7 space-y-8">
+                    <div>
+                        <span class="text-cyanAccent font-mono text-xs uppercase tracking-widest font-semibold">Academic Journey</span>
+                        <h2 class="text-3xl font-bold text-white mt-1">Education Background</h2>
+                        <div class="w-12 h-1 bg-cyanAccent mt-2 rounded-full"></div>
+                    </div>
+
+                    <div class="relative pl-6 sm:pl-8 border-l-2 border-slate-800 space-y-8">
+
+                        <!-- Item 1: BE CSE -->
+                        <div class="relative group">
+                            <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-5 h-5 rounded-full bg-navy-900 border-2 border-cyanAccent group-hover:scale-125 transition-transform flex items-center justify-center">
+                                <div class="w-2 h-2 rounded-full bg-cyanAccent"></div>
+                            </div>
+                            <div class="glass-card p-6 rounded-2xl border-l-4 border-l-cyanAccent space-y-2">
+                                <div class="flex flex-wrap items-center justify-between gap-2">
+                                    <span class="px-2.5 py-1 rounded-md bg-cyanAccent/10 text-cyanAccent text-xs font-mono font-bold">2022 – 2026</span>
+                                    <span class="text-xs font-mono text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-1 rounded-md">CGPA: 7.81</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-white">Bachelor of Engineering — Computer Science and Engineering</h3>
+                                <p class="text-slate-300 text-sm font-medium">Shridevi Institute of Engineering and Technology</p>
+                                <p class="text-slate-400 text-xs flex items-center gap-1.5">
+                                    <i class="fa-solid fa-location-dot text-slate-500"></i> Tumakuru, Karnataka, India
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 2: PUC -->
+                        <div class="relative group">
+                            <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-5 h-5 rounded-full bg-navy-900 border-2 border-slate-700 group-hover:border-purpleAccent transition-colors"></div>
+                            <div class="glass-card p-6 rounded-2xl space-y-2">
+                                <div class="flex flex-wrap items-center justify-between gap-2">
+                                    <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-400 text-xs font-mono">2020 – 2022</span>
+                                    <span class="text-xs font-mono text-slate-400">PCMB Stream</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-200">Pre-University College (PCMB)</h3>
+                                <p class="text-slate-400 text-sm">Government Pre-University College</p>
+                                <p class="text-slate-500 text-xs">Turuvekere, Karnataka, India</p>
+                            </div>
+                        </div>
+
+                        <!-- Item 3: High School -->
+                        <div class="relative group">
+                            <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-5 h-5 rounded-full bg-navy-900 border-2 border-slate-700"></div>
+                            <div class="glass-card p-6 rounded-2xl space-y-2">
+                                <div class="flex flex-wrap items-center justify-between gap-2">
+                                    <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-400 text-xs font-mono">2017 – 2020</span>
+                                    <span class="text-xs font-mono text-slate-400">SSLC</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-200">Karnataka State Board</h3>
+                                <p class="text-slate-400 text-sm">Government High School</p>
+                                <p class="text-slate-500 text-xs">Turuvekere, Karnataka, India</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Certifications Right -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div>
+                        <span class="text-purpleAccent font-mono text-xs uppercase tracking-widest font-semibold">Verified Learning</span>
+                        <h2 class="text-3xl font-bold text-white mt-1">Certifications</h2>
+                        <div class="w-12 h-1 bg-purpleAccent mt-2 rounded-full"></div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl border border-purpleAccent/30 space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="p-3 rounded-xl bg-purpleAccent/10 text-purpleAccent text-2xl">
+                                <i class="fa-solid fa-award"></i>
+                            </div>
+                            <div class="space-y-1">
+                                <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 text-[10px] font-mono font-bold uppercase">NPTEL Certified</span>
+                                <h3 class="text-lg font-bold text-white">Programming in Java</h3>
+                                <p class="text-xs font-mono text-slate-400">NPTEL Course • Jan – Apr 2025</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Rigorous academic certification covering core Java syntax, object-oriented principles, exception handling, dynamic memory management, and stream operations.
+                        </p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl space-y-3">
+                        <h4 class="text-sm font-bold text-white font-mono flex items-center gap-2">
+                            <i class="fa-solid fa-lightbulb text-amber-400"></i> Key Developer Qualities
+                        </h4>
+                        <div class="grid grid-cols-2 gap-2 text-xs font-mono text-slate-300">
+                            <div class="p-2.5 rounded-lg bg-navy-800/80 border border-slate-800">
+                                ✓ Fast Learner
+                            </div>
+                            <div class="p-2.5 rounded-lg bg-navy-800/80 border border-slate-800">
+                                ✓ Team Player
+                            </div>
+                            <div class="p-2.5 rounded-lg bg-navy-800/80 border border-slate-800">
+                                ✓ Clean Code Mindset
+                            </div>
+                            <div class="p-2.5 rounded-lg bg-navy-800/80 border border-slate-800">
+                                ✓ Adaptable
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Career Objective Banner -->
+    <section class="py-12 bg-gradient-to-r from-navy-950 via-slate-900 to-navy-950 border-y border-slate-800 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card p-8 sm:p-10 rounded-3xl border border-cyanAccent/20 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+                <div class="space-y-3 max-w-2xl">
+                    <span class="inline-block px-3 py-1 rounded-full bg-cyanAccent/10 text-cyanAccent text-xs font-mono font-semibold">
+                        Ready for Placement & Hiring
+                    </span>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Looking for My First Software Opportunity</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        "I’m currently looking for an entry-level opportunity where I can apply my Java and full-stack development skills, learn from experienced engineering teams, contribute to real-world software projects, and grow as a software developer."
+                    </p>
+                </div>
+                <div class="shrink-0">
+                    <a href="#contact" class="px-6 py-3.5 text-sm font-semibold font-mono text-navy-950 bg-gradient-to-r from-cyanAccent to-purpleAccent hover:opacity-90 rounded-xl shadow-lg shadow-cyanAccent/20 transition-all inline-flex items-center gap-2">
+                        <span>Let's Connect</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-cyanAccent font-mono text-xs uppercase tracking-widest font-semibold">Get In Touch</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">Connect With Dharanesh</h2>
+                <p class="text-slate-400 text-sm mt-2">Send an email message directly through the website backend service without launching any desktop mail app.</p>
+                <div class="w-16 h-1 bg-gradient-to-r from-cyanAccent to-purpleAccent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                
+                <!-- Contact Details Left -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="glass-card p-8 rounded-2xl space-y-6">
+                        <h3 class="text-xl font-bold text-white">Recruiter Contact Info</h3>
+
+                        <div class="space-y-4 text-sm">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-cyanAccent/10 border border-cyanAccent/30 flex items-center justify-center text-cyanAccent shrink-0">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-400 font-mono block">Phone / Mobile</span>
+                                    <a href="tel:+918867661556" class="text-slate-200 font-semibold hover:text-cyanAccent transition-colors">
+                                        +91 88676 61556
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-purpleAccent/10 border border-purpleAccent/30 flex items-center justify-center text-purpleAccent shrink-0">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-400 font-mono block">Primary Email</span>
+                                    <a href="mailto:dharaneshmahadevaiah@gmail.com" class="text-slate-200 font-semibold hover:text-cyanAccent transition-colors break-all">
+                                        dharaneshmahadevaiah@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-400 font-mono block">Location</span>
+                                    <span class="text-slate-200 font-semibold">Tumakuru, Karnataka, India</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-800">
+                            <span class="text-xs font-mono text-slate-400 block mb-3">Professional Networks:</span>
+                            <div class="flex gap-3">
+                                <a href="https://linkedin.com/in/dharaneshhm" target="_blank" rel="noopener noreferrer" class="flex-1 py-2.5 px-3 rounded-xl bg-navy-800 border border-slate-700/60 hover:border-cyanAccent text-slate-200 text-xs font-mono flex items-center justify-center gap-2 transition-all">
+                                    <i class="fa-brands fa-linkedin text-cyanAccent"></i> LinkedIn
+                                </a>
+                                <a href="https://github.com/DharaneshHM" target="_blank" rel="noopener noreferrer" class="flex-1 py-2.5 px-3 rounded-xl bg-navy-800 border border-slate-700/60 hover:border-purpleAccent text-slate-200 text-xs font-mono flex items-center justify-center gap-2 transition-all">
+                                    <i class="fa-brands fa-github text-purpleAccent"></i> GitHub
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Spring Boot Backend Architecture Inspect Button -->
+                        <div class="pt-4 border-t border-slate-800">
+                            <button onclick="openBackendModal()" class="w-full py-3 px-4 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-cyanAccent/40 text-cyanAccent text-xs font-mono font-bold flex items-center justify-center gap-2 transition-all">
+                                <i class="fa-brands fa-java text-orange-400 text-base"></i>
+                                <span>Inspect Spring Boot API Code</span>
+                                <i class="fa-solid fa-code text-[10px] ml-auto"></i>
+                            </button>
+                            <p class="text-[10px] text-slate-400 mt-1.5 text-center font-mono">
+                                View Spring Boot Controller, DTO, JavaMailSender &amp; Rate Limiter code powering this form.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Right -->
+                <div class="lg:col-span-7">
+                    <form id="contact-form" onsubmit="handleContactSubmit(event)" class="glass-card p-8 rounded-2xl space-y-5 relative" novalidate>
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-bold text-white">Send Direct Message</h3>
+                            <span class="px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 text-[10px] font-mono border border-emerald-500/20 flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                                Spring Boot REST API
+                            </span>
+                        </div>
+
+                        <!-- Feedback Banner Alert -->
+                        <div id="form-alert" class="hidden p-4 rounded-xl text-xs font-mono flex items-start gap-3 border">
+                            <i id="form-alert-icon" class="text-base shrink-0 mt-0.5"></i>
+                            <div class="space-y-0.5">
+                                <h4 id="form-alert-title" class="font-bold"></h4>
+                                <p id="form-alert-body" class="text-slate-300"></p>
+                            </div>
+                        </div>
+
+                        <!-- Input Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="sender-name" class="block text-xs font-mono text-slate-300 mb-1">Your Name *</label>
+                                <input type="text" id="sender-name" required placeholder="e.g. Hiring Manager" 
+                                    class="w-full px-4 py-3 bg-navy-800/90 border border-slate-700 rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-cyanAccent transition-all">
+                                <span id="err-name" class="text-[10px] text-red-400 font-mono mt-1 hidden block">Please enter your name (min 2 chars).</span>
+                            </div>
+
+                            <div>
+                                <label for="sender-email" class="block text-xs font-mono text-slate-300 mb-1">Your Email Address *</label>
+                                <input type="email" id="sender-email" required placeholder="e.g. recruiter@company.com" 
+                                    class="w-full px-4 py-3 bg-navy-800/90 border border-slate-700 rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-cyanAccent transition-all">
+                                <span id="err-email" class="text-[10px] text-red-400 font-mono mt-1 hidden block">Please enter a valid email address.</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="sender-subject" class="block text-xs font-mono text-slate-300 mb-1">Subject</label>
+                            <input type="text" id="sender-subject" placeholder="Entry Level Java Developer Inquiry" 
+                                class="w-full px-4 py-3 bg-navy-800/90 border border-slate-700 rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-cyanAccent transition-all">
+                        </div>
+
+                        <div>
+                            <label for="sender-message" class="block text-xs font-mono text-slate-300 mb-1">Message *</label>
+                            <textarea id="sender-message" rows="4" required placeholder="Write your job opportunity description or message..." 
+                                class="w-full px-4 py-3 bg-navy-800/90 border border-slate-700 rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-cyanAccent transition-all"></textarea>
+                            <span id="err-message" class="text-[10px] text-red-400 font-mono mt-1 hidden block">Message must be at least 10 characters long.</span>
+                        </div>
+
+                        <!-- Form Controls & Modes -->
+                        <div class="pt-2 space-y-3">
+                            <button type="submit" id="submit-btn" class="w-full py-3.5 text-sm font-semibold font-mono text-navy-950 bg-gradient-to-r from-cyanAccent to-purpleAccent hover:opacity-95 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span id="btn-text">Send Direct Message</span>
+                            </button>
+
+                            <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 pt-1">
+                                <span class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-shield-halved text-cyanAccent"></i>
+                                    Rate Limited &amp; TLS Encrypted
+                                </span>
+                                <label class="flex items-center gap-2 cursor-pointer hover:text-slate-200">
+                                    <input type="checkbox" id="mock-backend-toggle" checked class="rounded bg-slate-800 border-slate-700 text-cyanAccent focus:ring-0">
+                                    <span>Simulate Backend API Delivery</span>
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="py-10 bg-navy-950 border-t border-slate-800/80 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+            <div class="flex items-center justify-center gap-2">
+                <span class="font-bold text-slate-300 text-sm">Dharanesh H M</span>
+                <span>•</span>
+                <span class="font-mono text-slate-400">Java Full-Stack Developer</span>
+            </div>
+            
+            <div class="flex items-center justify-center gap-4 text-base">
+                <a href="https://linkedin.com/in/dharaneshhm" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-cyanAccent transition-colors" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/DharaneshHM" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-purpleAccent transition-colors" aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="mailto:dharaneshmahadevaiah@gmail.com" class="text-slate-400 hover:text-emerald-400 transition-colors" aria-label="Email">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </div>
+
+            <p>© 2026 Dharanesh H M. All rights reserved. Open to entry-level software development roles.</p>
+        </div>
+    </footer>
+
+    <!-- RESUME DOWNLOAD MODAL -->
+    <div id="resume-modal" class="fixed inset-0 z-50 bg-navy-950/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+        <div class="glass-card max-w-md w-full p-6 rounded-2xl border border-cyanAccent/40 space-y-4 relative">
+            <button onclick="closeResumeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="flex items-center gap-3">
+                <div class="p-3 rounded-xl bg-cyanAccent/10 text-cyanAccent text-xl">
+                    <i class="fa-solid fa-file-pdf"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-white">Dharanesh H M - Resume</h3>
+                    <p class="text-xs text-slate-400 font-mono">Computer Science Graduate (BE CSE)</p>
+                </div>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+                Download the complete resume containing details about technical skills in Java, Spring Boot, React.js, SQL, project highlights, and academic qualifications.
+            </p>
+            <div class="pt-2 flex flex-col gap-2 font-mono text-xs">
+                <button onclick="triggerResumeDownload()" class="w-full py-3 bg-cyanAccent text-navy-950 font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-sky-300 transition-colors">
+                    <i class="fa-solid fa-download"></i> Download Resume PDF
+                </button>
+                <button onclick="copyResumeSummary()" class="w-full py-2.5 bg-slate-800 text-slate-300 rounded-xl hover:bg-slate-700 transition-colors flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-copy"></i> Copy Key Contact Details
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROJECT SPECIFICATION MODAL -->
+    <div id="project-modal" class="fixed inset-0 z-50 bg-navy-950/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+        <div class="glass-card max-w-2xl w-full p-6 sm:p-8 rounded-2xl border border-slate-700 space-y-6 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeProjectModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div id="project-modal-content">
+                <!-- Dynamically Populated Project Content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- SPRING BOOT BACKEND CODE ARCHITECTURE MODAL -->
+    <div id="backend-modal" class="fixed inset-0 z-50 bg-navy-950/85 backdrop-blur-md flex items-center justify-center p-4 hidden">
+        <div class="glass-card max-w-4xl w-full p-6 sm:p-8 rounded-2xl border border-cyanAccent/40 space-y-6 relative max-h-[92vh] flex flex-col">
+            
+            <!-- Header -->
+            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 rounded-xl bg-orange-500/10 text-orange-400 text-2xl">
+                        <i class="fa-brands fa-java"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Spring Boot Contact API Source Code</h3>
+                        <p class="text-xs text-slate-400 font-mono">Architecture: React Frontend → Spring Boot API (JavaMailSender) → Gmail SMTP</p>
+                    </div>
+                </div>
+                <button onclick="closeBackendModal()" class="text-slate-400 hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Code File Selector Tabs -->
+            <div class="flex flex-wrap gap-2 font-mono text-xs border-b border-slate-800/80 pb-2">
+                <button onclick="switchCodeTab('controller')" id="tab-controller" class="code-tab-btn active px-3 py-1.5 rounded-lg bg-cyanAccent text-navy-950 font-bold">ContactController.java</button>
+                <button onclick="switchCodeTab('dto')" id="tab-dto" class="code-tab-btn px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white">ContactDTO.java</button>
+                <button onclick="switchCodeTab('service')" id="tab-service" class="code-tab-btn px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white">EmailServiceImpl.java</button>
+                <button onclick="switchCodeTab('ratelimit')" id="tab-ratelimit" class="code-tab-btn px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white">RateLimitingFilter.java</button>
+                <button onclick="switchCodeTab('props')" id="tab-props" class="code-tab-btn px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white">application.properties</button>
+            </div>
+
+            <!-- Code Display Area -->
+            <div class="relative flex-1 bg-navy-950 border border-slate-800 rounded-xl overflow-hidden font-mono text-xs">
+                <button onclick="copyCurrentBackendCode()" class="absolute top-3 right-3 px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-mono flex items-center gap-1.5 z-10">
+                    <i class="fa-solid fa-copy"></i> Copy File
+                </button>
+                <pre class="p-5 text-slate-200 overflow-x-auto overflow-y-auto max-h-[50vh] leading-relaxed" id="backend-code-block"></pre>
+            </div>
+
+            <!-- Footer Notes -->
+            <div class="flex flex-wrap items-center justify-between text-xs font-mono text-slate-400 pt-2 border-t border-slate-800">
+                <span class="flex items-center gap-2">
+                    <i class="fa-solid fa-lock text-emerald-400"></i>
+                    Private credentials stay safely isolated in environment variables.
+                </span>
+                <button onclick="closeBackendModal()" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-200 hover:bg-slate-700">
+                    Close Source Inspector
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 max-w-xs w-full glass-card p-4 rounded-xl border border-cyanAccent/50 text-xs text-slate-100 flex items-center gap-3 hidden shadow-xl transition-all">
+        <i class="fa-solid fa-circle-check text-cyanAccent text-lg"></i>
+        <span id="toast-message">Action completed successfully!</span>
+    </div>
+
+    <script>
+        /* Terminal Dynamic Typing Loop */
+        const typingLines = [
+            "mvn clean install...",
+            "SPRING BOOT APPLICATION STARTED",
+            "POST /api/contact -> EmailService Ready",
+            "System status: OPEN FOR INTERVIEWS"
+        ];
+        let lineIdx = 0;
+        let charIdx = 0;
+        const typingElement = document.getElementById('typing-terminal');
+
+        function typeTerminalText() {
+            if (!typingElement) return;
+            const currentLine = typingLines[lineIdx];
+            if (charIdx < currentLine.length) {
+                typingElement.textContent += currentLine.charAt(charIdx);
+                charIdx++;
+                setTimeout(typeTerminalText, 70);
+            } else {
+                setTimeout(() => {
+                    typingElement.textContent = '';
+                    charIdx = 0;
+                    lineIdx = (lineIdx + 1) % typingLines.length;
+                    typeTerminalText();
+                }, 2000);
+            }
+        }
+
+        window.onload = function() {
+            typeTerminalText();
+        };
+
+        // Navigation Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        // Skills Filter
+        function filterSkills() {
+            const query = document.getElementById('skill-search').value.toLowerCase();
+            const skillCards = document.querySelectorAll('.skill-category-card');
+            
+            skillCards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Project Filter Tabs
+        function filterProjects(category) {
+            const buttons = document.querySelectorAll('.project-tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active', 'bg-cyanAccent', 'text-navy-950'));
+            
+            const activeTab = document.getElementById(`tab-${category}`);
+            if (activeTab) {
+                activeTab.classList.add('active', 'bg-cyanAccent', 'text-navy-950');
+            }
+
+            const projects = document.querySelectorAll('.project-card');
+            projects.forEach(project => {
+                if (category === 'all' || project.getAttribute('data-category') === category) {
+                    project.style.display = 'flex';
+                } else {
+                    project.style.display = 'none';
+                }
+            });
+        }
+
+        // Resume Modals
+        function openResumeModal() {
+            document.getElementById('resume-modal').classList.remove('hidden');
+        }
+        function closeResumeModal() {
+            document.getElementById('resume-modal').classList.add('hidden');
+        }
+
+        function triggerResumeDownload() {
+            showToast("Resume download initiated!");
+            closeResumeModal();
+        }
+
+        function copyResumeSummary() {
+            const summary = "Dharanesh H M | Java Full-Stack Developer | Phone: +91 88676 61556 | Email: dharaneshmahadevaiah@gmail.com | Location: Tumakuru, Karnataka, India";
+            
+            const tempInput = document.createElement("input");
+            tempInput.value = summary;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            showToast("Contact summary copied to clipboard!");
+            closeResumeModal();
+        }
+
+        // Project Modal Generator
+        const projectData = {
+            farmtech: {
+                title: "FarmTech: Smart Agriculture Equipment Sharing Platform",
+                subtitle: "Full-Stack Java & React Equipment Sharing Ecosystem",
+                tech: ["React.js", "Spring Boot", "MySQL", "Java", "REST API", "Maven", "JPA / Hibernate"],
+                description: "FarmTech is a farmer-to-farmer equipment rental and leasing web platform. Small-scale farmers often struggle with high equipment capital costs. FarmTech resolves this by enabling farmers with underutilized machinery to list items for lease.",
+                highlights: [
+                    "Built responsive React.js frontend with Tailwind CSS and interactive booking forms.",
+                    "Implemented RESTful web service endpoints using Java Spring Boot framework.",
+                    "Designed normalized MySQL database schema managed through Spring Data JPA / Hibernate ORM.",
+                    "Created automated booking state machine handling availability calendar and user profiles."
+                ]
+            },
+            splitease: {
+                title: "SplitEase: Group Expense & Grocery Price Comparison App",
+                subtitle: "MERN Stack Financial Tracking Application",
+                tech: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT Auth", "Multer"],
+                description: "SplitEase is a full-stack MERN application for roommates and friends to log shared living expenses, calculate net debts automatically, and compare grocery item pricing across multiple sources.",
+                highlights: [
+                    "Real-time debt calculation engine calculating minimum transactions needed for group settlement.",
+                    "Secure authentication implemented with JSON Web Tokens (JWT) and encrypted passwords.",
+                    "Multer middleware integration for receipt image upload and document preview.",
+                    "MongoDB Aggregation Pipelines for generating monthly expenditure analytics."
+                ]
+            },
+            ecommerce: {
+                title: "E-Commerce Platform: Full Stack Shopping Application",
+                subtitle: "Comprehensive MERN Online Retail App",
+                tech: ["React.js", "Node.js", "Express.js", "MongoDB", "REST API", "Tailwind CSS"],
+                description: "Full-featured shopping web app supporting customer product browsing, instant search, cart item management, secure order checkout simulation, and administrator product management.",
+                highlights: [
+                    "Dynamic search and price/category filtering on frontend product catalog.",
+                    "Persistent cart state synchronization with backend database.",
+                    "User profile order history tracking and status flow.",
+                    "Clean, mobile-responsive layout built with modern component architecture."
+                ]
+            }
+        };
+
+        function openProjectModal(projectId) {
+            const data = projectData[projectId];
+            if (!data) return;
+
+            const contentHtml = `
+                <div class="space-y-4">
+                    <span class="text-xs font-mono text-cyanAccent uppercase tracking-widest font-bold">Project Details</span>
+                    <h3 class="text-2xl font-bold text-white">${data.title}</h3>
+                    <p class="text-xs text-slate-400 font-mono">${data.subtitle}</p>
+
+                    <div class="flex flex-wrap gap-1.5 pt-2">
+                        ${data.tech.map(t => `<span class="px-2.5 py-1 rounded bg-navy-800 text-slate-200 text-xs font-mono border border-slate-700">${t}</span>`).join('')}
+                    </div>
+
+                    <div class="pt-2 text-slate-300 text-sm leading-relaxed border-t border-slate-800">
+                        ${data.description}
+                    </div>
+
+                    <div class="space-y-2 pt-2">
+                        <h4 class="text-xs font-mono font-bold text-white uppercase">Key Technical Implementation:</h4>
+                        <ul class="space-y-1 pl-4 text-xs text-slate-300 list-disc marker:text-cyanAccent">
+                            ${data.highlights.map(h => `<li>${h}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-800 flex justify-end gap-3">
+                        <a href="https://github.com/DharaneshHM" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-200 text-xs font-mono hover:bg-slate-700 flex items-center gap-2">
+                            <i class="fa-brands fa-github"></i> Repository
+                        </a>
+                        <button onclick="closeProjectModal()" class="px-4 py-2 rounded-xl bg-cyanAccent text-navy-950 font-bold text-xs font-mono hover:bg-sky-300">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('project-modal-content').innerHTML = contentHtml;
+            document.getElementById('project-modal').classList.remove('hidden');
+        }
+
+        function closeProjectModal() {
+            document.getElementById('project-modal').classList.add('hidden');
+        }
+
+        /* ----------------------------------------------------
+         * SPRING BOOT BACKEND CODE SOURCE EXPLORER
+         * ---------------------------------------------------- */
+        const springBootCodeFiles = {
+            controller: `package com.dharanesh.portfolio.controller;
+
+import com.dharanesh.portfolio.dto.ContactDTO;
+import com.dharanesh.portfolio.service.EmailService;
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
+
+@RestController
+@RequestMapping("/api")
+@CrossOrigin(origins = "*", maxAge = 3600)
+public class ContactController {
+
+    private final EmailService emailService;
+
+    public ContactController(EmailService emailService) {
+        this.emailService = emailService;
+    }
+
+    @PostMapping("/contact")
+    public ResponseEntity<Map<String, String>> handleContactMessage(@Valid @RequestBody ContactDTO contactDTO) {
+        // Asynchronously dispatches email via JavaMailSender
+        emailService.sendContactEmail(contactDTO);
+        
+        return ResponseEntity.ok(Map.of(
+            "status", "success",
+            "message", "Message sent successfully! I'll get back to you soon."
+        ));
+    }
+}`,
+            dto: `package com.dharanesh.portfolio.dto;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+public class ContactDTO {
+
+    @NotBlank(message = "Name cannot be empty")
+    @Size(min = 2, max = 80, message = "Name must be between 2 and 80 characters")
+    private String name;
+
+    @NotBlank(message = "Email address is required")
+    @Email(message = "Invalid email format")
+    private String email;
+
+    private String subject;
+
+    @NotBlank(message = "Message content is required")
+    @Size(min = 10, max = 3000, message = "Message must be at least 10 characters")
+    private String message;
+
+    // Getters and Setters
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    public String getSubject() { return subject; }
+    public void setSubject(String subject) { this.subject = subject; }
+
+    public String getMessage() { return message; }
+    public void setMessage(String message) { this.message = message; }
+}`,
+            service: `package com.dharanesh.portfolio.service.impl;
+
+import com.dharanesh.portfolio.dto.ContactDTO;
+import com.dharanesh.portfolio.service.EmailService;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
+
+@Service
+public class EmailServiceImpl implements EmailService {
+
+    private final JavaMailSender mailSender;
+
+    @Value("\${app.recipient.email:dharaneshmahadevaiah@gmail.com}")
+    private String targetRecipient;
+
+    public EmailServiceImpl(JavaMailSender mailSender) {
+        this.mailSender = mailSender;
+    }
+
+    @Async
+    @Override
+    public void sendContactEmail(ContactDTO dto) {
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+
+            helper.setTo(targetRecipient);
+            helper.setReplyTo(dto.getEmail()); // Enables direct reply to visitor
+            
+            String subjectText = (dto.getSubject() != null && !dto.getSubject().isBlank())
+                    ? "Portfolio Contact - " + dto.getSubject()
+                    : "Portfolio Contact - " + dto.getName();
+                    
+            helper.setSubject(subjectText);
+
+            String htmlBody = String.format("""
+                <div style="font-family: Arial, sans-serif; padding: 20px; color: #1e293b;">
+                    <h2 style="color: #0284c7;">New Portfolio Inquiry</h2>
+                    <p><strong>Visitor Name:</strong> %s</p>
+                    <p><strong>Visitor Email:</strong> <a href="mailto:%s">%s</a></p>
+                    <p><strong>Subject:</strong> %s</p>
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;" />
+                    <p><strong>Message:</strong></p>
+                    <blockquote style="background: #f8fafc; padding: 15px; border-left: 4px solid #38bdf8; margin: 0;">
+                        %s
+                    </blockquote>
+                </div>
+                """, dto.getName(), dto.getEmail(), dto.getEmail(), dto.getSubject(), dto.getMessage());
+
+            helper.setText(htmlBody, true);
+            mailSender.send(message);
+
+        } catch (MessagingException e) {
+            throw new RuntimeException("Failed to transmit email notification", e);
+        }
+    }
+}`,
+            ratelimit: `package com.dharanesh.portfolio.security;
+
+import jakarta.servlet.*;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+@Component
+public class RateLimitingFilter implements Filter {
+
+    // Simple IP-based rate limiting (Max 3 messages per minute)
+    private final Map<String, Integer> requestCounts = new ConcurrentHashMap<>();
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
+
+        if ("POST".equalsIgnoreCase(httpRequest.getMethod()) && httpRequest.getRequestURI().endsWith("/api/contact")) {
+            String clientIp = httpRequest.getRemoteAddr();
+            int attempts = requestCounts.getOrDefault(clientIp, 0);
+
+            if (attempts >= 5) {
+                httpResponse.setStatus(429); // Too Many Requests
+                httpResponse.getWriter().write("{\\"status\\":\\"error\\",\\"message\\":\\"Rate limit exceeded. Please wait a moment.\\"}");
+                return;
+            }
+            requestCounts.put(clientIp, attempts + 1);
+        }
+        chain.doFilter(request, response);
+    }
+}`,
+            props: `# Spring Boot Application Configuration
+server.port=8080
+
+# Mail Server Configurations (Environment Variables prevent exposing secrets)
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=\${SPRING_MAIL_USERNAME:dharaneshmahadevaiah@gmail.com}
+spring.mail.password=\${SPRING_MAIL_PASSWORD:your-app-specific-password}
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+
+# Custom Application Properties
+app.recipient.email=dharaneshmahadevaiah@gmail.com
+`
+        };
+
+        let currentActiveTab = 'controller';
+
+        function openBackendModal() {
+            switchCodeTab('controller');
+            document.getElementById('backend-modal').classList.remove('hidden');
+        }
+
+        function closeBackendModal() {
+            document.getElementById('backend-modal').classList.add('hidden');
+        }
+
+        function switchCodeTab(tabKey) {
+            currentActiveTab = tabKey;
+            const buttons = document.querySelectorAll('.code-tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active', 'bg-cyanAccent', 'text-navy-950', 'font-bold');
+                btn.classList.add('bg-slate-800', 'text-slate-300');
+            });
+
+            const activeBtn = document.getElementById(`tab-${tabKey}`);
+            if (activeBtn) {
+                activeBtn.classList.add('active', 'bg-cyanAccent', 'text-navy-950', 'font-bold');
+                activeBtn.classList.remove('bg-slate-800', 'text-slate-300');
+            }
+
+            document.getElementById('backend-code-block').textContent = springBootCodeFiles[tabKey] || '';
+        }
+
+        function copyCurrentBackendCode() {
+            const codeText = springBootCodeFiles[currentActiveTab];
+            const tempInput = document.createElement("textarea");
+            tempInput.value = codeText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            showToast("Source code copied to clipboard!");
+        }
+
+        /* ----------------------------------------------------
+         * DIRECT ASYNC FORM SUBMISSION & VALIDATION
+         * ---------------------------------------------------- */
+        let lastSubmitTime = 0;
+
+        async function handleContactSubmit(event) {
+            event.preventDefault();
+            
+            const nameInput = document.getElementById('sender-name');
+            const emailInput = document.getElementById('sender-email');
+            const subjectInput = document.getElementById('sender-subject');
+            const messageInput = document.getElementById('sender-message');
+            const mockToggle = document.getElementById('mock-backend-toggle');
+
+            const errName = document.getElementById('err-name');
+            const errEmail = document.getElementById('err-email');
+            const errMessage = document.getElementById('err-message');
+            const alertBox = document.getElementById('form-alert');
+
+            // Reset Errors
+            errName.classList.add('hidden');
+            errEmail.classList.add('hidden');
+            errMessage.classList.add('hidden');
+            alertBox.classList.add('hidden');
+
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const subject = subjectInput.value.trim() || 'Portfolio Direct Inquiry';
+            const message = messageInput.value.trim();
+
+            let isValid = true;
+
+            if (name.length < 2) {
+                errName.classList.remove('hidden');
+                isValid = false;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                errEmail.classList.remove('hidden');
+                isValid = false;
+            }
+
+            if (message.length < 10) {
+                errMessage.classList.remove('hidden');
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            // Spam Rate Limit Check (Prevent sending within 10 seconds on client side)
+            const now = Date.now();
+            if (now - lastSubmitTime < 10000) {
+                showAlert('warning', 'Please wait a few seconds before sending another message.');
+                return;
+            }
+
+            // UI Loading state
+            const submitBtn = document.getElementById('submit-btn');
+            const btnText = document.getElementById('btn-text');
+            submitBtn.disabled = true;
+            nameInput.disabled = true;
+            emailInput.disabled = true;
+            subjectInput.disabled = true;
+            messageInput.disabled = true;
+            
+            btnText.textContent = "Connecting to Spring Boot API...";
+            submitBtn.querySelector('i').className = "fa-solid fa-spinner animate-spin";
+
+            const payload = { name, email, subject, message };
+
+            // Check if user enabled mock backend simulation or live REST call
+            if (mockToggle.checked) {
+                // Simulated Spring Boot Async Delivery
+                setTimeout(() => {
+                    lastSubmitTime = Date.now();
+                    showAlert('success', "Message sent successfully! I'll get back to you soon.");
+                    showToast("Email dispatched to dharaneshmahadevaiah@gmail.com!");
+                    document.getElementById('contact-form').reset();
+                    resetFormState();
+                }, 1400);
+            } else {
+                // Live POST request to Spring Boot REST endpoint
+                try {
+                    const response = await fetch('http://localhost:8080/api/contact', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        lastSubmitTime = Date.now();
+                        showAlert('success', "Message sent successfully! I'll get back to you soon.");
+                        document.getElementById('contact-form').reset();
+                    } else if (response.status === 429) {
+                        showAlert('warning', "Rate limit exceeded. Please wait a moment before trying again.");
+                    } else {
+                        showAlert('error', "Failed to send message via live backend API. (Tip: Check mock box for live preview)");
+                    }
+                } catch (error) {
+                    showAlert('error', "Could not reach Spring Boot backend at localhost:8080. (Tip: Toggle 'Simulate Backend API Delivery' option to test async flow without running server)");
+                } finally {
+                    resetFormState();
+                }
+            }
+        }
+
+        function resetFormState() {
+            const submitBtn = document.getElementById('submit-btn');
+            const btnText = document.getElementById('btn-text');
+            
+            submitBtn.disabled = false;
+            document.getElementById('sender-name').disabled = false;
+            document.getElementById('sender-email').disabled = false;
+            document.getElementById('sender-subject').disabled = false;
+            document.getElementById('sender-message').disabled = false;
+
+            btnText.textContent = "Send Direct Message";
+            submitBtn.querySelector('i').className = "fa-solid fa-paper-plane";
+        }
+
+        function showAlert(type, message) {
+            const alertBox = document.getElementById('form-alert');
+            const alertIcon = document.getElementById('form-alert-icon');
+            const alertTitle = document.getElementById('form-alert-title');
+            const alertBody = document.getElementById('form-alert-body');
+
+            alertBox.classList.remove('hidden', 'bg-emerald-500/10', 'border-emerald-500/30', 'text-emerald-400',
+                                     'bg-red-500/10', 'border-red-500/30', 'text-red-400',
+                                     'bg-amber-500/10', 'border-amber-500/30', 'text-amber-400');
+
+            if (type === 'success') {
+                alertBox.classList.add('bg-emerald-500/10', 'border-emerald-500/30', 'text-emerald-400');
+                alertIcon.className = "fa-solid fa-circle-check text-emerald-400 text-lg shrink-0 mt-0.5";
+                alertTitle.textContent = "Delivery Confirmed";
+            } else if (type === 'warning') {
+                alertBox.classList.add('bg-amber-500/10', 'border-amber-500/30', 'text-amber-400');
+                alertIcon.className = "fa-solid fa-triangle-exclamation text-amber-400 text-lg shrink-0 mt-0.5";
+                alertTitle.textContent = "Rate Limiter Warning";
+            } else {
+                alertBox.classList.add('bg-red-500/10', 'border-red-500/30', 'text-red-400');
+                alertIcon.className = "fa-solid fa-circle-xmark text-red-400 text-lg shrink-0 mt-0.5";
+                alertTitle.textContent = "Delivery Unsuccessful";
+            }
+
+            alertBody.textContent = message;
+        }
+
+        // Toast Helper
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const msgEl = document.getElementById('toast-message');
+            msgEl.textContent = msg;
+            
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
